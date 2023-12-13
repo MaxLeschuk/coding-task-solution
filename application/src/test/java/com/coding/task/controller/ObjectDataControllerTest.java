@@ -50,7 +50,7 @@ class ObjectDataControllerTest {
     when(objectDataRepository.findById(ID)).thenReturn(
         Optional.of(objectData));
 
-    String result = this.mockMvc.perform(get("/records")
+    String result = this.mockMvc.perform(get("/recsrds")
             .param("id", ID))
         .andExpect(status().isOk())
         .andReturn().getResponse().getContentAsString();
