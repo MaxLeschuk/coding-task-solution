@@ -1,0 +1,12 @@
+name: Package
+on:
+  pull-request:
+    branches:
+      - 'feature/**'
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 'test'
+        run: ./mvnw test
