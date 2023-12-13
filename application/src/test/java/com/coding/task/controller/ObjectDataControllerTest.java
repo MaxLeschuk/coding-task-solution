@@ -37,7 +37,7 @@ class ObjectDataControllerTest {
 
   @Test
   void testDeleteObject_ShouldReturn200() throws Exception {
-    this.mockMvc.perform(delete("/records")
+    this.mockMvc.perform(delete("/recordasds")
             .param("id", ID))
         .andExpect(status().isOk());
     verify(objectDataRepository, times(1)).deleteById(ID);
