@@ -1,0 +1,45 @@
+version: '3.7'
+services:
+  admin-panel:
+    build: admin-panel/
+    container_name: admin-panel
+    image: admin-panel
+    hostname: admin-panel
+    ports:
+      - "8080:8080"
+    networks:
+      - my-network
+  application:
+    build: application/
+    container_name: application
+    image: application
+    ports:
+      - "8081:8081"
+    depends_on:
+      - application-db
+    environment:
+      - ADMIN_CLIENT_HOST=admin-panel
+      - ADMIN_CLIENT_PORT=8080
+      - SPRING_DATASOURCE_URL=jdbc:mysql://application-db:3306/objectData?createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+    networks:
+      - my-network
+  application-db:
+    container_name: application-db
+    command: "mysqld --sql_mode=\"\""
+    image: 'mysql:8.0'
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./mysql_data:/docker-entrypoint-initdb.d/:ro
+    environment:
+      - MYSQL_DATABASE=objectData
+      - MYSQL_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=root
+    networks:
+      - my-network
+networks:
+  my-network:
+    name: my-network
+
