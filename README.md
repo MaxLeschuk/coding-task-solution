@@ -4,6 +4,7 @@ Local launch
 `./mvnw clean package` after packaging use
 `docker-compose up` for running containers
 
+
 # Links
 Swagger for application: 'http://localhost:8081/swagger-ui/index.html'
 
