@@ -1,0 +1,10 @@
+sonarqube:
+  name: sonar
+  runs-on: self-hosted
+  steps:
+    - uses: actions/checkout@v4
+    - name: sonar
+      uses: sonarsource/sonarqube-scan-action@master
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_SECRET }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_URL }}
