@@ -57,6 +57,6 @@ class ObjectDataControllerTest {
 
     String expected = objectMapper.writeValueAsString(objectData);
 
-    Assert.assertEquals(expected, result);
+    Assert.assertEquals("expected", result);
   }
 }
